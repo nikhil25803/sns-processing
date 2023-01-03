@@ -15,7 +15,7 @@ env\scripts\activate
 pip install -r requirements.txt
 ```
 
-### Run the server on for local system
+### Run the server on local system
 First comment out the following section in `main.py`
 ```python
 port = 8000
@@ -43,7 +43,7 @@ Then run the following command in the powershell
 python main.py
 ```
 
-> Run the server on a URL provided, eds with `.ngrok.io`
+> Run the server on a URL provided, ends with `.ngrok.io`
 
 **Note**
 Running the server will create a `cars_database.db` in the root directory.
