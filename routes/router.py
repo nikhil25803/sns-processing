@@ -18,10 +18,11 @@ async def operation(request: Request, db: Session = Depends(get_db)):
         requests.get(url=URL)
         print(result["SubscribeURL"])
     data = result["Message"]
+    print(result)
     
     try:
-        
         data = ast.literal_eval(data)
+        data = ast.literal_eval(data["http"])
         car_number = data["car_number"]
         action = data["action"]
         if action == "add":
@@ -42,6 +43,7 @@ async def operation(request: Request, db: Session = Depends(get_db)):
                     status_code=status.HTTP_501_NOT_IMPLEMENTED,
                     detail="Unexpected Server Error",
                 )
+        print("Hello")
     except:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED, detail="User is not authorised"
