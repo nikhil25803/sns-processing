@@ -50,9 +50,10 @@ nest_asyncio.apply()
 
 sns = boto3.client("sns", 
                    region_name="ap-south-1", 
-                   aws_access_key_id="AKIA33C4ZFDWZ5L7G2VJ",
-                   aws_secret_access_key="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"
+                   aws_access_key_id="",
+                   aws_secret_access_key=""
 )
+# Access Key Whatsapp se dekh le
 
 response = sns.subscribe(TopicArn="arn:aws:sns:ap-south-1:814090889453:naka-local-car-data", Protocol="HTTP", Endpoint=PUBLIC_URL+"/receive")
 subscription_arn = response["SubscriptionArn"]
