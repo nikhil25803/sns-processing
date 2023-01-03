@@ -1,4 +1,6 @@
 /env
+/evn
 __pycache__
 .vscode
 cars_databse.db
+/.env

@@ -4,6 +4,7 @@ from fastapi import Depends
 from db.database import get_db
 from controllers import controller
 import ast
+import requests
 
 
 router = APIRouter(tags=["notification"])
@@ -13,8 +14,11 @@ router = APIRouter(tags=["notification"])
 async def operation(request: Request, db: Session = Depends(get_db)):
     result = await request.json()
     if "SubscribeURL" in result.keys():
+        URL = result["SubscribeURL"]
+        requests.get(url=URL)
         print(result["SubscribeURL"])
     data = result["Message"]
+    
     try:
         
         data = ast.literal_eval(data)
