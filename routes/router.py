@@ -25,7 +25,7 @@ async def operation(request: Request, db: Session = Depends(get_db)):
         data = ast.literal_eval(data["http"])
         car_number = data["car_number"]
         action = data["action"]
-        if action == "add":
+        if action == "INSERT":
             try:
                 payload = controller.add_car(db=db, car_number=car_number)
                 return {"Status": status.HTTP_201_CREATED, "Detail": payload}
@@ -34,7 +34,7 @@ async def operation(request: Request, db: Session = Depends(get_db)):
                     status_code=status.HTTP_501_NOT_IMPLEMENTED,
                     detail="Unexpected Server Error",
                 )
-        if action == "delete":
+        if action == "REMOVE":
             try:
                 payload = controller.delete_car(db=db, car_number=car_number)
                 return {"Status": status.HTTP_202_ACCEPTED, "Detail": payload}

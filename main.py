@@ -50,8 +50,8 @@ nest_asyncio.apply()
 
 sns = boto3.client("sns", 
                    region_name="ap-south-1", 
-                   aws_access_key_id="",
-                   aws_secret_access_key=""
+                   aws_access_key_id=os.environ.get("ACCESSKEY"),
+                   aws_secret_access_key=os.environ.get("SECRETKEY")
 )
 # Access Key Whatsapp se dekh le
 
