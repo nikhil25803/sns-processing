@@ -9,10 +9,11 @@ from pyngrok import ngrok
 import boto3
 from dotenv import load_dotenv
 import os
+from pathlib import Path
 
 
-
-load_dotenv('.env')
+env_path = Path('.', '.env')
+load_dotenv(dotenv_path=env_path)
 app = FastAPI()
 
 
@@ -48,14 +49,18 @@ print('Public URL:', ngrok_tunnel.public_url)
 
 nest_asyncio.apply()
 
+# ACCESS_KEY = os.getenv("ACCESSKEY")
+# SECRET_KEY = os.getenv("SECRETKEY")
+# print(ACCESS_KEY, SECRET_KEY)
+
 sns = boto3.client("sns", 
                    region_name="ap-south-1", 
-                   aws_access_key_id=os.environ.get("ACCESSKEY"),
-                   aws_secret_access_key=os.environ.get("SECRETKEY")
+                   aws_access_key_id="",
+                   aws_secret_access_key=""
 )
 # Access Key Whatsapp se dekh le
 
-response = sns.subscribe(TopicArn="arn:aws:sns:ap-south-1:814090889453:naka-local-car-data", Protocol="HTTP", Endpoint=PUBLIC_URL+"/receive")
+response = sns.subscribe(TopicArn="arn:aws:sns:ap-south-1:814090889453:smart-naka-local-db", Protocol="HTTP", Endpoint=PUBLIC_URL+"/receive")
 subscription_arn = response["SubscriptionArn"]
 print(response)
 
